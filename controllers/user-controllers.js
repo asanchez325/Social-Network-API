@@ -14,7 +14,7 @@ getAllUser(req, res) {
         .then(dbUserData => res.json(dbUserData))
         .catch(err => {
             console.log(err);
-            res.sendStatus(400);
+            res.status(400).json(err);
         }); 
 },
 
@@ -30,7 +30,7 @@ getUserById({ params }, res) {
         .then(dbUserData => res.json(dbUserData))
         .catch(err => {
             console.log(err);
-            res.sendStatus(400);
+            res.status(400).json(err);
         });
     },
       

@@ -36,6 +36,7 @@ Create a virtual called reactionCount that retrieves the length of the thought's
 
 });
 
+
 const Thoughts = model('Thoughts', ThoughtsSchema);
 
 module.exports = Thoughts;
