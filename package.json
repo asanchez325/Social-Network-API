@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/asanchez325/Social-Network-API/issues"
   },
-  "homepage": "https://github.com/asanchez325/Social-Network-API#readme"
+  "homepage": "https://github.com/asanchez325/Social-Network-API#readme",
+  "dependencies": {
+    "mongoose": "^5.11.9"
+  }
 }
