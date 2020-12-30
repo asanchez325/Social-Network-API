@@ -8,9 +8,7 @@ Trimmed*/
 
 userName: {
     type: String,
-    unique: true,
     required: true,  
-    trim: true
 },
 
 /*email
@@ -21,15 +19,21 @@ Must match a valid email address (look into Mongoose's matching validation)*/
 
 userEmail: {
     type: String,
-    unique: true,
     required: true,
     match: [/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/, 'Please fill a valid email address']
-}
+},
 
 /*thoughts
-Array of _id values referencing the Thought model
+Array of _id values referencing the Thought model*/
+thoughts: [
+    {
+        type: Schema.Types.ObjectId,
+        ref: 'Thoughts'
+    }
 
-friends
+]
+
+/*friends
 Array of _id values referencing the User model (self-reference)
 Schema Settings
 
