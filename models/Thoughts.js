@@ -1,4 +1,6 @@
 const { Schema, model } = require('mongoose');
+const dateFormat = require('../utils/dateFormat');
+
 const ThoughtsSchema = new Schema ({
 /*thoughtText
 String
@@ -15,7 +17,8 @@ Set default value to the current timestamp
 Use a getter method to format the timestamp on query*/
 createdAt: {
     type: Date,
-    default: Date.now
+    default: Date.now,
+    get: (createdAtVal) => dateFormat(createdAtVal)
 },
 
 
@@ -33,8 +36,15 @@ Array of nested documents created with the reactionSchema
 Schema Settings
 Create a virtual called reactionCount that retrieves the length of the thought's reactions array field on query.
 */
-
-});
+},
+{
+    toJSON: {
+        virtuals: true,
+        getters: true,
+    },
+    id: false
+}
+);
 
 
 const Thoughts = model('Thoughts', ThoughtsSchema);
