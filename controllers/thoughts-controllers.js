@@ -5,6 +5,8 @@ const thoughtsController = {
 
 getAllThoughts(req, res) {
     Thoughts.find({})
+        .populate({ path: 'reactions', select: '-__v' })
+        .select('-__v')
         .then(dbThoughtsData => res.json(dbThoughtsData))
         .catch(err => {
             console.log(err);
@@ -16,6 +18,8 @@ getAllThoughts(req, res) {
 
 getThoughtsById({ params }, res) {
     Thoughts.findOne({ _id: params.id })
+        .populate({ path: 'reactions', select: '-__v' })
+        .select('-__v')
         .then(dbThoughtsData => {
             if (!dbThoughtsData) {
                 res.status(404).json({ message: 'No Thoughts with this ID found!'});
@@ -67,9 +71,11 @@ addReaction({ params, body}, res) {
 },
 
 /*PUT to update Thoughts by id
-NEED TO FIGURE OUT HOW TO UPDATE USER
+NEED TO FIGURE OUT HOW TO UPDATE USER*/
 updateThoughts({ params, body }, res) {
-    Thoughts.findOneAndUpdate({ _id: params.id}, body, { new: true})
+    Thoughts.findOneAndUpdate(
+        { _id: params.id}, body, 
+        { new: true})
         .then(dbThoughtsData => {
             if (!dbThoughtsData) {
                 res.status(404).json({ message: 'No thoughts found with this id!'});
@@ -78,7 +84,7 @@ updateThoughts({ params, body }, res) {
             res.json(dbThoughtsData);
             })
         .catch(err => res.status(400).json(err));
-}, */
+}, 
 
 //DELETE to remove thoughts by id
 removeThoughts({ params }, res) {
