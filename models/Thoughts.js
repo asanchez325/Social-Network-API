@@ -2,7 +2,7 @@ const { Schema, model, Types} = require('mongoose');
 const dateFormat = require('../utils/dateFormat');
 
 const ReactionSchema = new Schema ({
-    reactionID: {
+    reactionId: {
         type: Schema.Types.ObjectId,
         defaults: () => new Types.ObjectId()
     },
@@ -76,7 +76,7 @@ Create a virtual called reactionCount that retrieves the length of the thought's
 */
 
 ThoughtsSchema.virtual('reactionCount').get(function() {
-    return this.reactions.length;
+    return this.reaction.length;
   });
 
 const Thoughts = model('Thoughts', ThoughtsSchema);

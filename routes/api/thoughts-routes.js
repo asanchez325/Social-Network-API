@@ -26,11 +26,11 @@ router
 // /api/thoughts/<userId>/<thoughtsId>
 router
   .route('/:userId/:thoughtsId')
-  .put(addReaction)
+  .post(addReaction)
   .delete(removeThoughts);
-// /api/comments/<UserId>/<thoughtsId>/<reactionId>
+// /api/thoughts/<UserId>/<thoughtsId>/<reactionId>
 router
-.route('/:pizzaId/:thoughtsId/:reactionId')
+.route('/:userId/:thoughtsId/:reactionId')
 .delete(removeReaction);
 
 module.exports = router;

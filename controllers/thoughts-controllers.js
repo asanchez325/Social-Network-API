@@ -51,10 +51,10 @@ getThoughtsById({ params }, res) {
 },
 
 addReaction({ params, body}, res) {
-    Reaction.findOneAndUpdate(
-        {_id: params.reactionId},
+    Thoughts.findOneAndUpdate(
+        {_id: params.thoughtsId},
         { $push: { reaction: body}},
-        { new:true}
+        { new: true}
     )
     .then(dbUserData => {
         if (!dbUserData) {
@@ -104,7 +104,7 @@ removeThoughts({ params }, res) {
 },
 
 removeReaction({ params}, res) {
-    Reaction.findOneAndUpdate(
+    Thoughts.findOneAndUpdate(
         { _id: params.reactionId},
         { $pull: {reactions: { reactionId: params.reactionId}}},
         { new: true }
