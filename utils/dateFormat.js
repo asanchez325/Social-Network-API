@@ -1,4 +1,4 @@
-//this code was retreived from class module pizza hunt
+//this code was retrieved from class module pizza hunt
 
 const addDateSuffix = date => {
     let dateStr = date.toString();

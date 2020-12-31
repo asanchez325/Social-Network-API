@@ -4,15 +4,16 @@ const dateFormat = require('../utils/dateFormat');
 const ReactionSchema = new Schema ({
     reactionId: {
         type: Schema.Types.ObjectId,
-        defaults: () => new Types.ObjectId()
+        default: () => new Types.ObjectId()
     },
     reactionBody: {
         type: String,
         required: true,
+        maxlength: 280
     },
     username: {
         type: String,
-        required: true,
+        required: true
     },
 
     createdAt: {
@@ -23,22 +24,31 @@ const ReactionSchema = new Schema ({
 },
 {
     toJSON: {
+        virtuals: true,
         getters: true
     }
 }
 );
 
 
-const ThoughtsSchema = new Schema ({
+const ThoughtSchema = new Schema ({
 /*thoughtText
 String
 Required
 Must be between 1 and 280 characters*/
-thoughtsText: {
+thoughtText: {
+    type: String,
+    required: true,
+    minlength: 1,
+    maxlength: 280
+},
+/*username (The user that created this thought)
+String
+Required*/
+writtenBy: {
     type: String,
     required: true,
 },
-
 /*createdAt
 Date
 Set default value to the current timestamp
@@ -49,16 +59,7 @@ createdAt: {
     get: (createdAtVal) => dateFormat(createdAtVal)
 },
 
-
-/*username (The user that created this thought)
-String
-Required*/
-writtenBy: {
-    type: String,
-    required: true,
-},
-
-/*reactions (These are like replies)
+/*reaction (These are like reactions)
 Array of nested documents created with the reactionSchema*/
 
 reaction: [ReactionSchema]
@@ -66,7 +67,7 @@ reaction: [ReactionSchema]
 {
     toJSON: {
         virtuals: true,
-        getters: true,
+        getters: true
     },
     id: false
 }
@@ -75,10 +76,10 @@ reaction: [ReactionSchema]
 Create a virtual called reactionCount that retrieves the length of the thought's reactions array field on query.
 */
 
-ThoughtsSchema.virtual('reactionCount').get(function() {
+ThoughtSchema.virtual('reactionCount').get(function() {
     return this.reaction.length;
   });
 
-const Thoughts = model('Thoughts', ThoughtsSchema);
+const Thought = model('Thought', ThoughtSchema);
 
-module.exports = Thoughts;
+module.exports = Thought;
