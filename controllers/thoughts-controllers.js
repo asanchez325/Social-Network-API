@@ -50,6 +50,22 @@ getThoughtsById({ params }, res) {
     .catch(err => res.json(err));
 },
 
+addReaction({ params, body}, res) {
+    Reaction.findOneAndUpdate(
+        {_id: params.reactionId},
+        { $push: { reaction: body}},
+        { new:true}
+    )
+    .then(dbUserData => {
+        if (!dbUserData) {
+            res.status(404).json({ message: 'Ni user found with this ID!' });
+            return;
+        }
+        res.json(dbUserData);
+    })
+        .catch(err => res.json(err));
+},
+
 /*PUT to update Thoughts by id
 NEED TO FIGURE OUT HOW TO UPDATE USER
 updateThoughts({ params, body }, res) {
@@ -85,8 +101,17 @@ removeThoughts({ params }, res) {
         res.json(dbUserData);
     })
     .catch(err => res.json(err));
-}
+},
 
+removeReaction({ params}, res) {
+    Reaction.findOneAndUpdate(
+        { _id: params.reactionId},
+        { $pull: {reactions: { reactionId: params.reactionId}}},
+        { new: true }
+    )
+        .then(dbUserData => res.json(dbUserData))
+        .catch(err => res.json(err));
+}
 };
 
 module.exports = thoughtsController;
