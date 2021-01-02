@@ -30,7 +30,7 @@ Back-End API for a social network web application where users can share their th
 Allows users to be created, post thoughts, reactions to existing thoughts and add/delete friends.
 
 ## Preview
-![alt preview](assets/Capture1.gif) 
+![alt preview](assets/Capture1.gif) <br/>
 ![See a demo of the Social Network API Back-End here!](https://drive.google.com/file/d/1uXAzlNVEP4zWwIZS11bLf1WItDP10VTv/view)
 ---
 
