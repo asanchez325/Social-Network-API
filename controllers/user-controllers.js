@@ -2,7 +2,6 @@ const { User } = require('../models');
 
 const userController = {
 //GET all users
-
 getAllUser(req, res) {
     User.find({})
         .populate({
@@ -19,7 +18,6 @@ getAllUser(req, res) {
 },
 
 //GET single user by id
-
 getUserById({ params }, res) {
     User.findOne({ _id: params.id })
         .populate(
@@ -38,7 +36,6 @@ getUserById({ params }, res) {
       
 
 //POST new user
-
 createUser({ body}, res) {
     User.create(body)
     .then(dbUserData => res.json(dbUserData))
@@ -46,7 +43,6 @@ createUser({ body}, res) {
 },
 
 //PUT to update user by id
-
 updateUser({ params, body }, res) {
     User.findOneAndUpdate({ _id: params.id}, body, { new: true})
         .then(dbUserData => {
@@ -100,6 +96,7 @@ addFriend ({ params }, res) {
 })
 .catch(err => res.json(err));
 }, 
+
 //DELETE Friend
 deleteFriend ({ params }, res) {
     User.findOneAndUpdate(

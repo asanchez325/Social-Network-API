@@ -3,7 +3,6 @@ const { Thought, User } = require('../models');
 
 const thoughtController = {
 //GET all thought
-
 getAllThought(req, res) {
     Thought.find({})
         .populate({ 
@@ -19,7 +18,6 @@ getAllThought(req, res) {
 },
 
 //GET single Thought by id
-
 getThoughtById({ params }, res) {
     Thought.findOne({ _id: params.id })
         .populate({ path: 'reaction', select: '-__v' })
@@ -75,8 +73,7 @@ addReaction({ params, body}, res) {
         .catch(err => res.json(err));
 },
 
-/*PUT to update Thought by id
-NEED TO FIGURE OUT HOW TO UPDATE USER*/
+//PUT to update Thought by id
 updateThought({ params, body }, res) {
     Thought.findOneAndUpdate(
         { _id: params.id}, body, 
