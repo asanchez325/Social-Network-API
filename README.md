@@ -20,7 +20,7 @@ Back-End API for a social network web application where users can share their th
 *Instructions required to install and run the project:*
 
 * Clone the github respository
-* Install the necessesary node modules (identified in the package.json file)
+* Install the necessary node modules (identified in the package.json file)
 * Activate the server via npm start from the command line.
 
 ---
@@ -31,7 +31,7 @@ Allows users to be created, post thoughts, reactions to existing thoughts and ad
 
 ## Preview
 ![alt preview](assets/Capture1.gif) 
-![See a demo of the E-Commerce Back-End here!](https://drive.google.com/file/d/1DWAhWh3JnReuSFzNpaZZOr_8vsQJjWjh/view/)
+![See a demo of the E-Commerce Back-End here!](https://drive.google.com/file/d/1uXAzlNVEP4zWwIZS11bLf1WItDP10VTv/view)
 ---
 
 ## Tests
